@@ -1,2 +1,20 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<ul>  
+      <li>  
+        <%= link_to user_path(@user) do %>
+          <div class="text">投稿数</div>  
+          <div class="num"><%= @user.bicycles.count %></div>  
+        <% end %>  
+      </li>  
+  </ul>
+
+
+
+<% @user.bicycles.each do |bicycle| %>
+      <h4 class="user">
+      <span class="user-id"><%= bicycle.user.email %></span>
+      </h4>
+      <div class="bicycle-name">
+          <%= link_to bicycle.name %>
+      </div>
+
+  <% end %>
