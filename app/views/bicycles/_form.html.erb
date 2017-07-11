@@ -1,0 +1,44 @@
+<%= form_with(model: bicycle, local: true) do |form| %>
+  <% if bicycle.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bicycle.errors.count, "error") %> prohibited this bicycle from being saved:</h2>
+
+      <ul>
+      <% bicycle.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :bicycle_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :value %>
+    <%= form.number_field :value, id: :bicycle_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :bicycle_description %>
+  </div>
+
+  <div class="field">
+    <% if @bicycle.image? %>
+
+    <%= image_tag @product.image.url %>
+    <% end %><br>
+
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+    <% end %>
+    
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
