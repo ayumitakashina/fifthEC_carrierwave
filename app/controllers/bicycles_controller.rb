@@ -14,7 +14,10 @@ class BicyclesController < ApplicationController
 
   # GET /bicycles/new
   def new
-    @bicycle = Bicycle.new
+    @bicycle = Bicycle.new(bicycle_params)
+    3.times do
+      @bicycle.images.build
+    end
   end
 
   # GET /bicycles/1/edit
@@ -69,6 +72,6 @@ class BicyclesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bicycle_params
-      params.require(:bicycle).permit(:name, :value, :description,:user_id, :image)
+      params.require(:bicycle).permit(:name, :value, :description,:user_id, :image, images_attributes: [:image])
     end
 end
